@@ -10,7 +10,7 @@ if(isset($_POST['gendersubmit']) && md5($_POST['gendersubmit']) == $control  ){
     $multiNameControl = count($nameList); // isim adetleri değişkene aktarıyoruz
 
     foreach ($nameList as &$onlyNameList) {
-        $onlyNameList = preg_replace("/[^a-zA-Z]+/", "", $onlyNameList);    
+        $onlyNameList = preg_replace("/[^a-zA-Z]+/", "", $onlyNameList);  //harf dışındaki bütün karakterleri kaldırır.  
     }
 
     $nameList = implode("&name=",$nameList); // dizilerin arasına "&name=" ekler
