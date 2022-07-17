@@ -12,9 +12,6 @@ if(isset($_POST['gendersubmit']) && md5($_POST['gendersubmit']) == $control  ){
     $multiNameControl = count($nameList); // isim adetleri değişkene aktarıyoruz
 
     $nameList = implode("&name=",$nameList); // dizilerin arasına "&name=" ekler
-
-
-    
     
     $json = file_get_contents('https://api.genderize.io/?name='.$nameList); //belirtilen URL'deki json alıyoruz.
 
