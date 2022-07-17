@@ -4,14 +4,17 @@ $control = md5(1458); // form kontrol
 if(isset($_POST['gendersubmit']) && md5($_POST['gendersubmit']) == $control  ){
     
     $isim = filter_input(INPUT_POST, "GF_isim", FILTER_SANITIZE_STRING) ;
-    $isim = preg_replace("/[^a-zA-Z]+/", "", $isim);
-
     $nameList = trim(str_replace(' ', '', $isim)); //boşlukları kaldır
     $nameList = explode(",",$nameList); // diziye dönüştürme
 
     $multiNameControl = count($nameList); // isim adetleri değişkene aktarıyoruz
 
+    foreach ($nameList as &$onlyNameList) {
+        $onlyNameList = preg_replace("/[^a-zA-Z]+/", "", $onlyNameList);    
+    }
+
     $nameList = implode("&name=",$nameList); // dizilerin arasına "&name=" ekler
+
     
     $json = file_get_contents('https://api.genderize.io/?name='.$nameList); //belirtilen URL'deki json alıyoruz.
 
